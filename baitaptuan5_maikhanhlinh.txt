@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thư viện ảnh tương tác</title>
+  <style>
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .gallery img {
+      width: 200px;
+      height: auto;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border 0.3s;
+    }
+    .gallery img:focus {
+      outline: none;
+      border: 2px solid #28a745;
+    }
+  </style>
+</head>
+<body>
+  <h1>Thư viện ảnh tương tác</h1>
+  <div class="gallery">
+    <img src="images/photo1.jpg" alt="Ảnh 1: Mô tả ảnh 1" tabindex="0">
+    <img src="images/photo2.jpg" alt="Ảnh 2: Mô tả ảnh 2" tabindex="0">
+    <img src="images/photo3.jpg" alt="Ảnh 3: Mô tả ảnh 3" tabindex="0">
+    <img src="images/photo4.jpg" alt="Ảnh 4: Mô tả ảnh 4" tabindex="0">
+    <img src="images/photo5.jpg" alt="Ảnh 5: Mô tả ảnh 5" tabindex="0">
+    <img src="images/photo6.jpg" alt="Ảnh 6: Mô tả ảnh 6" tabindex="0">
+  </div>
+
+  <script>
+    window.onload = function() {
+      const images = document.querySelectorAll('.gallery img');
+      images.forEach((img, index) => {
+        // Sự kiện khi chuột di chuyển vào ảnh
+        img.addEventListener('mouseover', () => {
+          img.style.border = '2px solid #007BFF';
+          console.log(`mouseover: Ảnh ${index + 1}`);
+        });
+
+        // Sự kiện khi chuột rời khỏi ảnh
+        img.addEventListener('mouseleave', () => {
+          img.style.border = '2px solid transparent';
+          console.log(`mouseleave: Ảnh ${index + 1}`);
+        });
+
+        // Sự kiện khi ảnh được focus (bằng bàn phím)
+        img.addEventListener('focus', () => {
+          img.style.border = '2px solid #28a745';
+          console.log(`focus: Ảnh ${index + 1}`);
+        });
+
+        // Sự kiện khi ảnh mất focus
+        img.addEventListener('blur', () => {
+          img.style.border = '2px solid transparent';
+          console.log(`blur: Ảnh ${index + 1}`);
+        });
+      });
+    };
+  </script>
+</body>
+</html>
